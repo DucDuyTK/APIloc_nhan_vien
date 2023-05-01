@@ -8,7 +8,7 @@ namespace EmployeeManagement.API.Entities
     public class Employee
     {
         /// <summary>
-        /// 
+        /// Khai báo kiểu dữ liệu
         /// </summary>
         public Guid Id { get; set; }
         public string Code { get; set; }
