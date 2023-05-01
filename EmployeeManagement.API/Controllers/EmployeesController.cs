@@ -22,7 +22,8 @@ namespace EmployeeManagement.API.Controllers
         /// <param name="limit"> Số bản ghi muốn lấy </param>
         /// <param name="ofset"> Vị trí bản ghi bắt đầu lấy </param>
         /// <returns>
-        /// Trả về 1 đối tượng PagingResult danh sách nhân viên trong 1 trang và tổng số bản ghi thỏa mãn điều kiện
+        /// Trả về 1 đối tượng PagingResult danh sách nhân viên
+        /// trong 1 trang và tổng số bản ghi thỏa mãn điều kiện
         /// </returns>
         [HttpGet]
         public PagingResult GetPaging(
@@ -45,8 +46,8 @@ namespace EmployeeManagement.API.Controllers
                         DateOfBirth = new DateTime(),
                         PhoneNumber = "0987654321",
                         Email = "Ex1@gmail.com",
-                        JobPositionID= Guid.NewGuid(),
-                        DepartmentID= Guid.NewGuid(),
+                        JobPositionId= Guid.NewGuid(),
+                        DepartmentId= Guid.NewGuid(),
                         Salary=12323413,
                         WorkStatus=WorkStatus.Dang_thu_viec,
                         JoiningDate=DateTime.Now,
@@ -61,8 +62,8 @@ namespace EmployeeManagement.API.Controllers
                         DateOfBirth = new DateTime(),
                         PhoneNumber = "0987372818",
                         Email = "Ex1@gmail.com",
-                        JobPositionID= Guid.NewGuid(),
-                        DepartmentID= Guid.NewGuid(),
+                        JobPositionId= Guid.NewGuid(),
+                        DepartmentId= Guid.NewGuid(),
                         Salary=2398471,
                         WorkStatus=WorkStatus.Dang_lam_viec,
                         JoiningDate=DateTime.Now,
@@ -77,8 +78,8 @@ namespace EmployeeManagement.API.Controllers
                         DateOfBirth = new DateTime(),
                         PhoneNumber = "098767686",
                         Email = "Ex3@gmail.com",
-                        JobPositionID= Guid.NewGuid(),
-                        DepartmentID= Guid.NewGuid(),
+                        JobPositionId= Guid.NewGuid(),
+                        DepartmentId= Guid.NewGuid(),
                         Salary=21374821,
                         WorkStatus=WorkStatus.Da_nghi_viec,
                         JoiningDate=DateTime.Now,
