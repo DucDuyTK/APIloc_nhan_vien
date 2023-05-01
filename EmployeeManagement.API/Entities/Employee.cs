@@ -8,67 +8,67 @@ namespace EmployeeManagement.API.Entities
     public class Employee
     {
         /// <summary>
-        /// Khai báo kiểu dữ liệu Id
+        /// Khai báo Id
         /// </summary>
         public Guid Id { get; set; }
 
         /// <summary>
-        /// Khai báo kiểu dũ liệu Code
+        /// Mã nhân viên
         /// </summary>
         public string Code { get; set; }
         
         /// <summary>
-        /// Khai báo kiểu sữ liệu Fullname
+        /// Tên nhân viên
         /// </summary>
         public string Fullname { get; set; }
 
         /// <summary>
-        /// Khai báo kiểu sữ liệu Gender
+        /// Giới tính: 0 là nam, 1 là nữ, 2 là khác
         /// </summary>
         public Gender Gender { get; set; } //Magic number
 
         /// <summary>
-        /// Khai báo kiểu sữ liệu DateOfBirth
+        /// Ngày, tháng, năm sinh
         /// </summary>
         public DateTime DateOfBirth { get; set; }
 
         /// <summary>
-        /// Khai báo kiểu sữ liệu PhoneNumber
+        /// Số điện thoại
         /// </summary>
         public string PhoneNumber { get; set; }
 
         /// <summary>
-        /// Khai báo kiểu sữ liệu Email
+        /// Email
         /// </summary>
         public string Email { get; set; }
 
         /// <summary>
-        /// Khai báo kiểu sữ liệu JobPositionId
+        /// Id vị trí
         /// </summary>
         public Guid JobPositionId { get; set; }
 
         /// <summary>
-        /// Khai báo kiểu sữ liệu DepartmentId
+        /// Id phòng ban
         /// </summary>
         public Guid DepartmentId { get; set; }
 
         /// <summary>
-        /// Khai báo kiểu sữ liệu Salary
+        /// Lương
         /// </summary>
         public decimal Salary { get; set; }
 
         /// <summary>
-        /// Khai báo kiểu sữ liệu WorkStatus
+        /// Trạng thái công việc: 1 là đang thử việc, 2 là đang làm việc, 2 là đã nghỉ việc
         /// </summary>
         public WorkStatus WorkStatus { get; set; }
 
         /// <summary>
-        /// Khai báo kiểu sữ liệu JoiningDate
+        /// Ngày gia nhập
         /// </summary>
         public DateTime JoiningDate { get; set; }
 
         /// <summary>
-        /// Khai báo kiểu sữ liệu TaXCode
+        /// Mã số thuế
         /// </summary>
         public string TaxCode { get; set; }
 

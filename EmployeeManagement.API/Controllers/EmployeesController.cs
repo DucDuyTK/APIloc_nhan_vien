@@ -29,9 +29,9 @@ namespace EmployeeManagement.API.Controllers
         public PagingResult GetPaging(
             [FromQuery]string? keyword,
             [FromQuery]Guid? jobPositionId,
-            [FromQuery]Guid? deparmentId,
+            [FromQuery]Guid? departmentId,
             [FromQuery]int limit = 20,
-            [FromQuery]int ofset = 0)
+            [FromQuery]int offset = 0)
         {
             return new PagingResult
             {
@@ -41,15 +41,15 @@ namespace EmployeeManagement.API.Controllers
                     {
                         Id = Guid.NewGuid(),
                         Code = "NV001",
-                        Fullname = "Duy Thiếu Hiệp",
+                        Fullname = "Nguyễn Đức Duy",
                         Gender = Enums.Gender.Male,
                         DateOfBirth = new DateTime(),
                         PhoneNumber = "0987654321",
-                        Email = "Ex1@gmail.com",
+                        Email = "nguyenducduy@gmail.com",
                         JobPositionId= Guid.NewGuid(),
                         DepartmentId= Guid.NewGuid(),
                         Salary=12323413,
-                        WorkStatus=WorkStatus.Dang_thu_viec,
+                        WorkStatus=WorkStatus.TrialJob,
                         JoiningDate=DateTime.Now,
                         TaxCode = "27193343"
                     },
@@ -61,11 +61,11 @@ namespace EmployeeManagement.API.Controllers
                         Gender = Enums.Gender.Female,
                         DateOfBirth = new DateTime(),
                         PhoneNumber = "0987372818",
-                        Email = "Ex1@gmail.com",
+                        Email = "khuatthithaonguyen@gmail.com",
                         JobPositionId= Guid.NewGuid(),
                         DepartmentId= Guid.NewGuid(),
                         Salary=2398471,
-                        WorkStatus=WorkStatus.Dang_lam_viec,
+                        WorkStatus=WorkStatus.Working,
                         JoiningDate=DateTime.Now,
                         TaxCode= "28731921"
                     },
@@ -73,15 +73,15 @@ namespace EmployeeManagement.API.Controllers
                     {
                         Id = Guid.NewGuid(),
                         Code = "NV003",
-                        Fullname = "Tớ Hận Cậu",
+                        Fullname = "Phạm Tuấn Duy",
                         Gender = Enums.Gender.Other,
                         DateOfBirth = new DateTime(),
                         PhoneNumber = "098767686",
-                        Email = "Ex3@gmail.com",
+                        Email = "phamtuanduy@gmail.com",
                         JobPositionId= Guid.NewGuid(),
                         DepartmentId= Guid.NewGuid(),
                         Salary=21374821,
-                        WorkStatus=WorkStatus.Da_nghi_viec,
+                        WorkStatus=WorkStatus.LeaveOffWork,
                         JoiningDate=DateTime.Now,
                         TaxCode = "27312774"
                     }
