@@ -8,7 +8,7 @@ namespace EmployeeManagement.API.Entities
     public class Employee
     {
         /// <summary>
-        /// Khai báo Id
+        /// Khóa chính
         /// </summary>
         public Guid Id { get; set; }
 
@@ -43,12 +43,12 @@ namespace EmployeeManagement.API.Entities
         public string Email { get; set; }
 
         /// <summary>
-        /// Id vị trí
+        /// Khóa ngoại Id vị trí
         /// </summary>
         public Guid JobPositionId { get; set; }
 
         /// <summary>
-        /// Id phòng ban
+        /// Khóa ngoại Id phòng ban
         /// </summary>
         public Guid DepartmentId { get; set; }
 

@@ -27,15 +27,15 @@ namespace EmployeeManagement.API.Controllers
         /// </returns>
         [HttpGet]
         public PagingResult GetPaging(
-            [FromQuery]string? keyword,
-            [FromQuery]Guid? jobPositionId,
-            [FromQuery]Guid? departmentId,
-            [FromQuery]int limit = 20,
-            [FromQuery]int offset = 0)
+            [FromQuery] string? keyword,
+            [FromQuery] Guid? jobPositionId,
+            [FromQuery] Guid? departmentId,
+            [FromQuery] int limit = 20,
+            [FromQuery] int offset = 0)
         {
             return new PagingResult
             {
-                Data = new List<Employee>
+                Data = new List<object>
                 {
                     new Employee
                     {
@@ -89,5 +89,81 @@ namespace EmployeeManagement.API.Controllers
                 TotalRecords = 3
             };
         }
+
+        /// <summary>
+        /// API lấy chi tiết 1 nhân viên
+        /// </summary>
+        /// <param name="employeeId"> Id nhân viên </param>
+        /// <returns> Trả về chi tiết thông tin nhân viên muốn lấy </returns>
+        [HttpGet("{employeeId}")]
+        public IActionResult GetEmployeeById(
+            [FromRoute] Guid employeeId)
+        {
+            return Ok(new Employee
+            {
+                Id = employeeId,
+                Code = "NV001",
+                Fullname = "Nguyễn Đức Duy",
+                Gender = Enums.Gender.Male,
+                DateOfBirth = new DateTime(),
+                PhoneNumber = "0987654321",
+                Email = "nguyenducduy@gmail.com",
+                JobPositionId = Guid.NewGuid(),
+                DepartmentId = Guid.NewGuid(),
+                Salary = 12323413,
+                WorkStatus = WorkStatus.TrialJob,
+                JoiningDate = DateTime.Now,
+                TaxCode = "27193343"
+            });
+        }
+        
+        /// <summary>
+        /// API lấy mã nhân viên tự động tăng
+        /// </summary>
+        /// <returns> Mã nhân viên tự động tăng </returns>
+        [HttpGet("new-Code")]
+        public IActionResult GetNewEmployeeCode()
+        {
+            return Ok("NV22222");
+        }
+        
+        /// <summary>
+        /// API thêm mới nhân viên
+        /// </summary>
+        /// <param name="newEmployee"> Id nhân viên cần thêm mới </param>
+        /// <returns> Trả về Id nhân viên vừa thêm mới thành công </returns>
+        [HttpPost]
+        public IActionResult InsertEmployee([FromBody] Employee newEmployee)
+        {
+            return StatusCode(StatusCodes.Status201Created, Guid.NewGuid());
+        }
+
+        /// <summary>
+        /// API sửa thông tin nhân viên
+        /// </summary>
+        /// <param name="updateEmployee"> Thông tin cần sửa của nhân viên </param>
+        /// <param name="employeeId"> Id nhân viên cần sửa </param>
+        /// <returns> Trả về ID của nhân viên vừa mới sửa </returns>
+        [HttpPut("{employeeId}")]
+        public IActionResult UpdateEmployee(
+            [FromBody] Employee updateEmployee,
+            [FromRoute] Guid employeeId)
+        {
+            return Ok(employeeId);
+        }
+
+        /// <summary>
+        /// API xóa nhân viên
+        /// </summary>
+        /// <param name="employeeId"> Id của nahan viên muốn xóa </param>
+        /// <returns> Trả về Id nhân viên vừa mới xóa </returns>
+        [HttpDelete("{employeeId}")]
+        public IActionResult DeleteEmployee(
+            [FromRoute] Guid employeeId)
+        {
+            return Ok(employeeId);
+        }
+        
+
     }
 }
