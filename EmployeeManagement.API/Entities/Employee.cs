@@ -1,4 +1,5 @@
 ﻿using EmployeeManagement.API.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace EmployeeManagement.API.Entities
 {
@@ -15,11 +16,15 @@ namespace EmployeeManagement.API.Entities
         /// <summary>
         /// Mã nhân viên
         /// </summary>
+        [Required(ErrorMessage = "Mã nhân viên không được để trống")]
+        [MaxLength(20, ErrorMessage = "Mã nhân viên không được vượt quá 20 ký tự")]
         public string Code { get; set; }
-        
+
         /// <summary>
         /// Tên nhân viên
         /// </summary>
+        [Required(ErrorMessage = "Tên nhân viên không được để trống")]
+        [MaxLength(100, ErrorMessage = "Tên nhân viên không được vượt quá 100 ký tự")]
         public string Fullname { get; set; }
 
         /// <summary>
@@ -35,11 +40,15 @@ namespace EmployeeManagement.API.Entities
         /// <summary>
         /// Số điện thoại
         /// </summary>
+        [Required]
+        [MaxLength (25)]
         public string PhoneNumber { get; set; }
 
         /// <summary>
         /// Email
         /// </summary>
+        [Required]
+        [MaxLength (50)]
         public string Email { get; set; }
 
         /// <summary>
@@ -61,6 +70,21 @@ namespace EmployeeManagement.API.Entities
         /// Trạng thái công việc: 1 là đang thử việc, 2 là đang làm việc, 2 là đã nghỉ việc
         /// </summary>
         public WorkStatus WorkStatus { get; set; }
+        
+        /// <summary>
+        /// Số CMT/ CCCD
+        /// </summary>
+        public string IdentityNumber { get; set; }
+
+        /// <summary>
+        /// Ngày cấp CMT/ CCCD
+        /// </summary>
+        public string IdentityIssuerDate { get; set; }
+
+        /// <summary>
+        /// Nơi cấp CMT/ CCCD
+        /// </summary>
+        public string IdentityIssuerPlace { get; set; }
 
         /// <summary>
         /// Ngày gia nhập
@@ -71,6 +95,6 @@ namespace EmployeeManagement.API.Entities
         /// Mã số thuế
         /// </summary>
         public string TaxCode { get; set; }
-
+        
     }
 }

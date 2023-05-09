@@ -62,3 +62,7 @@ D:\Documents\WorkSpace\VisualStudio\EmployeeManagement\EmployeeManagement.API\ob
 D:\Documents\WorkSpace\VisualStudio\EmployeeManagement\EmployeeManagement.API\obj\Debug\net6.0\EmployeeManagement.API.pdb
 D:\Documents\WorkSpace\VisualStudio\EmployeeManagement\EmployeeManagement.API\obj\Debug\net6.0\EmployeeManagement.API.genruntimeconfig.cache
 D:\Documents\WorkSpace\VisualStudio\EmployeeManagement\EmployeeManagement.API\obj\Debug\net6.0\ref\EmployeeManagement.API.dll
+D:\Documents\WorkSpace\VisualStudio\EmployeeManagement\EmployeeManagement.API\bin\Debug\net6.0\Dapper.dll
+D:\Documents\WorkSpace\VisualStudio\EmployeeManagement\EmployeeManagement.API\bin\Debug\net6.0\MySqlConnector.dll
+D:\Documents\WorkSpace\VisualStudio\EmployeeManagement\EmployeeManagement.API\obj\Debug\net6.0\EmployeeManagement.API.Resource.resources
+D:\Documents\WorkSpace\VisualStudio\EmployeeManagement\EmployeeManagement.API\obj\Debug\net6.0\EmployeeManagement.API.csproj.GenerateResource.cache
