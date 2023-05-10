@@ -47,8 +47,9 @@ namespace EmployeeManagement.API.Entities
         /// <summary>
         /// Email
         /// </summary>
-        [Required]
-        [MaxLength (50)]
+        [Required(ErrorMessage = "Email không được để trống")]
+        [MaxLength(50, ErrorMessage = "Email không được để quá 50 lý tự")]
+        [EmailAddress(ErrorMessage = "Email chưa đúng định dạng")]
         public string Email { get; set; }
 
         /// <summary>
@@ -70,16 +71,18 @@ namespace EmployeeManagement.API.Entities
         /// Trạng thái công việc: 1 là đang thử việc, 2 là đang làm việc, 2 là đã nghỉ việc
         /// </summary>
         public WorkStatus WorkStatus { get; set; }
-        
+
         /// <summary>
         /// Số CMT/ CCCD
         /// </summary>
+        [Required(ErrorMessage = "Căn cước công dân không được để trống")]
+        [MaxLength(25, ErrorMessage = "Căn cước công dân không được để quá 25 lý tự")]
         public string IdentityNumber { get; set; }
 
         /// <summary>
         /// Ngày cấp CMT/ CCCD
         /// </summary>
-        public string IdentityIssuerDate { get; set; }
+        public DateTime IdentityIssuerDate { get; set; }
 
         /// <summary>
         /// Nơi cấp CMT/ CCCD
