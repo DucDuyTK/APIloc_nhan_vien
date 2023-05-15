@@ -1,13 +1,14 @@
 ﻿using Dapper;
-using MySqlConnector;
 using EmployeeManagement.API.Entities;
 using EmployeeManagement.API.Entities.DTO;
 using EmployeeManagement.API.Enums;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+using MySqlConnector;
 using System.ComponentModel.DataAnnotations;
-using System;
+using System.Data;
+using System.Diagnostics.Eventing.Reader;
+using System.Reflection;
+using System.Reflection.Metadata;
 
 namespace EmployeeManagement.API.Controllers
 {
@@ -16,8 +17,13 @@ namespace EmployeeManagement.API.Controllers
     /// </summary>
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class EmployeesController : ControllerBase
+    public class EmployeeController : ControllerBase
     {
+        /*public int GetTotalRecords()
+        {
+            return TotalRecords;
+        }*/
+
         /// <summary>
         /// API lấy danh sách nhân viên theo điều kiện lọc và phân trang
         /// </summary>
@@ -31,14 +37,53 @@ namespace EmployeeManagement.API.Controllers
         /// trong 1 trang và tổng số bản ghi thỏa mãn điều kiện
         /// </returns>
         [HttpGet]
-        public PagingResult GetPaging(
+        public IActionResult GetPaging(
             [FromQuery] string? keyword,
             [FromQuery] Guid? jobPositionId,
             [FromQuery] Guid? departmentId,
             [FromQuery] int limit = 20,
             [FromQuery] int offset = 0)
         {
-            return new PagingResult
+            try
+            {
+                string storedProcedureName = "Proc_Employee_GetPaging";
+
+                var parameters = new DynamicParameters();
+                parameters.Add("p_Keyword", keyword);
+                parameters.Add("p_JobPositionId", jobPositionId);
+                parameters.Add("p_DepartmentId", departmentId);
+                parameters.Add("p_Limit", limit);
+                parameters.Add("p_Offset", offset);
+
+                var mySqlConnection = new MySqlConnection(DatabaseContext.ConnectionString);
+
+                var multipleResultSets = mySqlConnection.QueryMultiple(
+                    storedProcedureName, parameters, commandType: System.Data.CommandType.StoredProcedure);
+
+                var employees = multipleResultSets.Read<object>().ToList();
+
+                int totalRecords = multipleResultSets.Read<int>().FirstOrDefault();
+
+                return Ok(new PagingResult
+                {
+                    Data = employees,
+                    TotalRecords = totalRecords
+                });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new ErrorResult
+                {
+                    ErrorCode = Enums.ErrorCode.Exception,
+                    DevMsg = Resource.DevMsg_Exception,
+                    UserMsg = Resource.UserMsg_Exception,
+                    MoreInfo = "https://google.com",
+                    TraceId = HttpContext.TraceIdentifier
+                });
+            }
+
+            /* return new PagingResult
             {
                 Data = new List<object>
                 {
@@ -92,7 +137,7 @@ namespace EmployeeManagement.API.Controllers
                     }
                 },
                 TotalRecords = 3
-            };
+            };*/
         }
 
         /// <summary>
@@ -138,7 +183,7 @@ namespace EmployeeManagement.API.Controllers
                     ErrorCode = Enums.ErrorCode.Exception,
                     DevMsg = Resource.DevMsg_Exception,
                     UserMsg = Resource.UserMsg_Exception,
-                    MoreInfo = "https://handleerror.com/1",
+                    MoreInfo = "https://google.com",
                     TraceId = HttpContext.TraceIdentifier
                 });
             }
@@ -278,8 +323,8 @@ namespace EmployeeManagement.API.Controllers
                 {
                     ErrorCode = Enums.ErrorCode.DatabaseFailed,
                     DevMsg = Resource.DevMsg_DatabaseFailed,
-                    UserMsg = Resource.DevMsg_DatabaseFailed,
-                    MoreInfo = "https://errfix.com/2",
+                    UserMsg = Resource.UserMsg_DatabaseFailed,
+                    MoreInfo = "https://google.com",
                     TraceId = HttpContext.TraceIdentifier
                 });
             }
@@ -292,8 +337,8 @@ namespace EmployeeManagement.API.Controllers
                 {
                     ErrorCode = Enums.ErrorCode.Exception,
                     DevMsg = Resource.DevMsg_Exception,
-                    UserMsg = Resource.DevMsg_Exception,
-                    MoreInfo = "https://errfix.com/1",
+                    UserMsg = Resource.UserMsg_Exception,
+                    MoreInfo = "https://google.com",
                     TraceId = HttpContext.TraceIdentifier
 
                 });
@@ -405,8 +450,8 @@ namespace EmployeeManagement.API.Controllers
                 {
                     ErrorCode = Enums.ErrorCode.DatabaseFailed,
                     DevMsg = Resource.DevMsg_DatabaseFailed,
-                    UserMsg = Resource.DevMsg_DatabaseFailed,
-                    MoreInfo = "https://errfix.com/2",
+                    UserMsg = Resource.UserMsg_DatabaseFailed,
+                    MoreInfo = "https://google.com",
                     TraceId = HttpContext.TraceIdentifier
                 });
             }
@@ -419,8 +464,8 @@ namespace EmployeeManagement.API.Controllers
                 {
                     ErrorCode = Enums.ErrorCode.Exception,
                     DevMsg = Resource.DevMsg_Exception,
-                    UserMsg = Resource.DevMsg_Exception,
-                    MoreInfo = "https://errfix.com/1",
+                    UserMsg = Resource.UserMsg_Exception,
+                    MoreInfo = "https://google.com",
                     TraceId = HttpContext.TraceIdentifier
 
                 });
@@ -464,7 +509,7 @@ namespace EmployeeManagement.API.Controllers
                         ErrorCode = Enums.ErrorCode.DatabaseFailed,
                         DevMsg = Resource.DevMsg_DatabaseFailed,
                         UserMsg = Resource.UserMsg_DatabaseFailed,
-                        MoreInfo = "https://handleerror.com/1",
+                        MoreInfo = "https://google.com",
                         TraceId = HttpContext.TraceIdentifier
                     });
                 }
@@ -477,7 +522,7 @@ namespace EmployeeManagement.API.Controllers
                     ErrorCode = Enums.ErrorCode.Exception,
                     DevMsg = Resource.DevMsg_Exception,
                     UserMsg = Resource.UserMsg_Exception,
-                    MoreInfo = "https://handleerror.com/1",
+                    MoreInfo = "https://google.com",
                     TraceId = HttpContext.TraceIdentifier
                 });
                 

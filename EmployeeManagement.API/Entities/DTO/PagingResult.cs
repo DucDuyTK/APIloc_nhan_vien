@@ -5,8 +5,10 @@
     /// </summary>
     public class PagingResult
     {
+        internal int totalRecords;
+
         /// <summary>
-        /// Danh sach nhan vien
+        /// Danh sach đối tượng trả về trên 1 trang
         /// </summary>
         public List<object> Data { get; set; }
 
